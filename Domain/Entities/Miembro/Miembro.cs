@@ -27,10 +27,8 @@ namespace Domain.Entities.Miembro
         public virtual Departamento.Departamento? Departamento { get; set; }
         public NivelAccesoMiembro NivelAcceso { get; set; }
         public bool Autorizado { get; set; } = false;
-
-        public string InformacionMiembro() 
-        {
-            return $"{Rango}, {Nombre} {Apellido}";
-        }
+        public virtual ICollection<Historico>? Historicos { get; set; }
+        public string InformacionMiembro() => $"{ (Institucion == Institucion.ARD ? Rango?.NombreArmada : Rango?.Name)  }, {Nombre} {Apellido}";
+        public string ObtenerNivelDeAcceso() => NivelAcceso.ToString().Replace("_", " ");
     }
 }

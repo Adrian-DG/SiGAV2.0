@@ -9,6 +9,6 @@ namespace Domain.Entities
     [Table(name: "Rangos", Schema = "Miembro")]
     public class Rango : NamedEntityMetadata
     {
-        
+        public string? NombreArmada { get; set; }
     }
 }
