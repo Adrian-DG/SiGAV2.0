@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Domain.Entities.Unidad;
 
 
-namespace Domain.Entities.Asistencias
+namespace Domain.Entities.Asistencia
 {
     [Table(name: "Asistencias", Schema = "Asistencias")]
     public class Asistencia : EntityMetadata

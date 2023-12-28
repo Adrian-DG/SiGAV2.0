@@ -10,8 +10,6 @@ namespace Domain.Entities.Miembro
     [Table(name: "Miembros", Schema = "Miembro")]
     public class Miembro : EntityMetadata
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string? Cedula { get; set; }
         public string? Nombre { get; set; }
         public string? Apellido { get; set; }

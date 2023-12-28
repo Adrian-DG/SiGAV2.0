@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Models.Aurthenticated
 {
-    public class AuthenticatedResponse
+    public record AuthenticatedResponse
     {
         public string? Token { get; set; }
         public DateTime Expiration { get; set; }

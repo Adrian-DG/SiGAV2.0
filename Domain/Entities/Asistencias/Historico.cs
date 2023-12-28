@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Domain.Entities.Asistencias
+namespace Domain.Entities.Asistencia
 {
     [Table(name: "Historico", Schema = "Asistencias")]
     public class Historico : EntityMetadata

@@ -9,7 +9,6 @@ namespace Domain.Entities
     [Table(name: "RegionAsistencia", Schema = "Asistencias")]
     public class RegionAsistencia : NamedEntityMetadata
     {
-        public PerteneceA PerteneceA { get; set; }
         public RegionMacro RegionMacro { get; set; }
     }
 }

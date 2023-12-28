@@ -12,11 +12,15 @@ namespace Domain.Abstraction
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
+        [DataType(DataType.DateTime)]
         public DateTime FechaCreacion 
         { 
             get => this.FechaCreacion;
             set => FechaCreacion = GetActualDateTime(); 
         }
+
+        [DataType(DataType.DateTime)]
         public DateTime FechaModificacion { get; set; }
         public bool Estatus { get; set; } = true;
         public bool IsDeleted { get; set; } = false;

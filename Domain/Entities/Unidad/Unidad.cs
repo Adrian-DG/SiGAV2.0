@@ -10,8 +10,6 @@ namespace Domain.Entities.Unidad
     [Table(name: "Unidades", Schema = "Unidad")]
     public class Unidad : EntityMetadata
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string? Ficha { get; set; }
 
         [ForeignKey("Denominacion")]
