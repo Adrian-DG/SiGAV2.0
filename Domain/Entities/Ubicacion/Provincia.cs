@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
+    [Table(name: "Provincias", Schema = "Ubicacion")]
     public class Provincia : NamedEntityMetadata
     {
         public RegionMacro RegionMacro { get; set; }

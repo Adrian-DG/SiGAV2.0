@@ -9,6 +9,7 @@ using Domain.Entities.Unidad;
 
 namespace Domain.Entities.Asistencia
 {
+    [Table(name: "Asistencias", Schema = "Asistencia")]
     public class Asistencia : EntityMetadata
     {
         // Ciudadano

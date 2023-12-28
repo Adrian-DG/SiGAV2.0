@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities.Miembro
 {
+    [Table(name: "Miembros", Schema = "Miembro")]
     public class Miembro : EntityMetadata
     {
         public string? Cedula { get; set; }

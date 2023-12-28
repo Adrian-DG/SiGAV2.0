@@ -14,12 +14,18 @@ namespace Domain.Abstraction
         public int Id { get; set; }
 
         [DataType(DataType.DateTime)]
-        public DateTime FechaCreacion { get; set; } = DateTime.Now;
+        public DateTime FechaCreacion 
+        { 
+            get => this.FechaCreacion;
+            set => FechaCreacion = GetActualDateTime(); 
+        }
 
         [DataType(DataType.DateTime)]
         public DateTime FechaModificacion { get; set; }
         public bool Estatus { get; set; } = true;
         public bool IsDeleted { get; set; } = false;
+
+        public DateTime GetActualDateTime() => DateTime.UtcNow;
 
     }
 }

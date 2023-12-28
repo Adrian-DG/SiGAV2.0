@@ -106,7 +106,6 @@ namespace Infrastructure.Data
                     v => JsonConvert.DeserializeObject<IList<VehiculoTipo>>(v, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore })
                 );
 
-
             modelBuilder.Entity<Miembro>().HasIndex(i => i.Cedula).IsUnique();
 
             modelBuilder.Entity<Unidad>().HasIndex(i => i.Ficha).IsUnique();
