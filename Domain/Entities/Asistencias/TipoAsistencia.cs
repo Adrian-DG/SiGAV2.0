@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities.Asistencia
 {
-    [Table(name: "TipoAsistencias", Schema = "Asistencias")]
+    [Table(name: "TipoAsistencias", Schema = "Asistencia")]
     public class TipoAsistencia : NamedEntityMetadata
     {
         public CategoriaAsistencia CategoriaAsistencia { get; set; }

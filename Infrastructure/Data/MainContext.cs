@@ -13,12 +13,14 @@ using Domain.Entities.Departamento;
 using Domain.Entities.Miembro;
 using Domain.Entities.Unidad;
 using Domain.Entities.Vehiculo;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
 namespace Infrastructure.Data
 {
-    public class MainContext : DbContext
+    public class MainContext : IdentityDbContext<IdentityUser>
     {
         #region Entities
 
@@ -77,7 +79,8 @@ namespace Infrastructure.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
 			optionsBuilder.UseLazyLoadingProxies(); // enables LazyLoading on virtual properties
-		}
+            base.OnConfiguring(optionsBuilder);
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
