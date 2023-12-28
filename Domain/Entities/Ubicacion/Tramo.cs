@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    [Table(name: "Tramos", Schema = "Ubicacion")]
     public class Tramo : NamedEntityMetadata
     {
         [ForeignKey("RegionAsistenciaId")]

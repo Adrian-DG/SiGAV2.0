@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    [Table(name: "VehiculoMarcas", Schema = "Vehiculo")]
     public class VehiculoMarca : NamedEntityMetadata
     {
         
