@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities.Asistencia
 {
-    [Table(name: "Historico", Schema = "Asistencia")]
-    public class Historico : EntityMetadata
+    [Table(name: "HistoricoAsistencias", Schema = "Asistencia")]
+    public class HistoricoAsistencia : EntityMetadata
     {
         [ForeignKey("Unidad")]
         public int UnidadId { get; set; }
