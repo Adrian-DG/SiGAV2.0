@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Reflection;
 using System.Reflection.Metadata;
@@ -16,6 +17,7 @@ using Domain.Entities.Vehiculo;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using Newtonsoft.Json;
 
 namespace Infrastructure.Data
@@ -31,7 +33,7 @@ namespace Infrastructure.Data
 
         #region Unidad
         public DbSet<TipoUnidad>? TipoUnidades { get; set; }
-        public DbSet<Domain.Entities.Unidad.Historico>? HistoricoUnidades { get; set; }
+        public DbSet<HistoricoUnidad>? HistoricoUnidades { get; set; }
         public DbSet<Denominacion>? Denominaciones { get; set; }
 
         #endregion
@@ -40,7 +42,7 @@ namespace Infrastructure.Data
             
         public DbSet<Rango>? Rangos { get; set; }
         public DbSet<Miembro>? Miembros { get; set; }
-        public DbSet<Domain.Entities.Miembro.Historico>? HistoricoMiembros { get; set; }
+        public DbSet<HistoricoMiembro>? HistoricoMiembros { get; set; }
 
         #endregion
        
@@ -65,8 +67,8 @@ namespace Infrastructure.Data
         #region Asistencia
             
         public DbSet<TipoAsistencia>? TipoAsistencias { get; set; }
-        public DbSet<Domain.Entities.Asistencia.Historico>? HistoricoAsistencias { get; set; }
-        public DbSet<Domain.Entities.Asistencia.Asistencia>? Asistencias { get; set; }
+        public DbSet<HistoricoAsistencia>? HistoricoAsistencias { get; set; }
+        public DbSet<Asistencia>? Asistencias { get; set; }
 
         #endregion
 
@@ -84,6 +86,17 @@ namespace Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            var entities = modelBuilder.Model.GetEntityTypes().Where(c => c.ClrType.IsAssignableTo(typeof(EntityMetadata)));
+
+            Expression<Func<EntityMetadata, bool>> filterExpression = x => !x.IsDeleted;
+
+            foreach (var entity in entities)
+            {
+                var parameter = Expression.Parameter(entity.ClrType);
+                var body = ReplacingExpressionVisitor.Replace(filterExpression.Parameters.First(), parameter, filterExpression.Body);
+                var lambdaExpression = Expression.Lambda(body, parameter);
+                entity.SetQueryFilter(lambdaExpression);
+            }
 
             modelBuilder.Entity<Asistencia>()
                 .Property(prop => prop.TipoAsistencias)
@@ -109,8 +122,6 @@ namespace Infrastructure.Data
             modelBuilder.Entity<Miembro>().HasIndex(i => i.Cedula).IsUnique();
 
             modelBuilder.Entity<Unidad>().HasIndex(i => i.Ficha).IsUnique();
-
-            modelBuilder.Entity<EntityMetadata>().HasQueryFilter(prop => !prop.IsDeleted);
 
             base.OnModelCreating(modelBuilder);
         }
