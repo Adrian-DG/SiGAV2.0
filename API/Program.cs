@@ -53,8 +53,9 @@ builder.Services.AddCors(opt => opt.AddPolicy(_customPolicy, b => {
     b.WithExposedHeaders("content-disposition");
 }));
 
-builder.Services.AddDbContext<MainContext>(opt => {
-    opt.UseSqlServer(builder.Configuration.GetConnectionString(builder.Environment.IsProduction() ? "ProdConnection" : "DevConnection"), b => b.MigrationsAssembly("API"));
+builder.Services.AddDbContext<MainContext>(opt => {    
+    opt.UseSqlite(builder.Configuration.GetConnectionString(builder.Environment.IsProduction() ? "ProdConnection" : "DevConnection"), b => b.MigrationsAssembly("API"));
+    //opt.UseSqlServer(builder.Configuration.GetConnectionString(builder.Environment.IsProduction() ? "ProdConnection" : "DevConnection"), b => b.MigrationsAssembly("API"));
 });
 
 builder.Services.GetApplicationServices(builder.Configuration, builder.Environment);
