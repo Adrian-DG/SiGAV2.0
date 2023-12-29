@@ -5,5 +5,6 @@ using System.Threading.Tasks;
 
 namespace Domain.DTO.Pagination
 {
-    public record PaginationFilter(int Quantity, int Page, string SearchTerm, bool Status);
+
+    public record PaginationFilter(int Page, int Size, string SearchTerm, bool Status);
 }

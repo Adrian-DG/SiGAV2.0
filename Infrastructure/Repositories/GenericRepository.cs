@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Application.Contracts;
 using Domain.Abstraction;
 using Domain.DTO.Pagination;
+using Domain.Models.Pagination;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
@@ -21,32 +22,34 @@ namespace Infrastructure.Repositories
 
         public void Delete(T Entity)
         {
-            throw new NotImplementedException();
+            Entity.ChangeVisibility();
+            _context.Attach<T>(Entity);
+            _context.Entry<T>(Entity).State = EntityState.Modified;
         }
 
-        public Task<List<T>> GetAllAsync(PaginationFilter Filter, System.Linq.Expressions.Expression<Func<T, bool>> Predicate)
+        public async Task<PagedData<T>> GetAllAsync(PaginationFilter Filter, System.Linq.Expressions.Expression<Func<T, bool>> Predicate)
         {
-            throw new NotImplementedException();
+            var result = await _repo
+                        .Where(Predicate)
+                        .Skip<T>((Filter.Page - 1) * Filter.Size)
+                        .Take<T>(Filter.Size)
+                        .ToListAsync<T>();
+
+            int total = await GetTotalRecords(Predicate);
+
+            return new PagedData<T>(Filter.Page, Filter.Size,result, total);
         }
 
-        public Task<T> GetById(object Id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<T> GetById(object Id) => await _repo.FindAsync(Id);
 
-        public Task<int> GetTotalRecords(System.Linq.Expressions.Expression<Func<T, bool>> Predicate)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<int> GetTotalRecords(System.Linq.Expressions.Expression<Func<T, bool>> Predicate) => await _repo.CountAsync(Predicate);
 
-        public Task InsertAsync(T Entity)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task InsertAsync(T Entity) => await _repo.AddAsync(Entity);
 
         public void Update(T Entity)
         {
-            throw new NotImplementedException();
+            _context.Attach<T>(Entity);
+            _context.Entry<T>(Entity).State = EntityState.Modified;
         }
     }
 }
