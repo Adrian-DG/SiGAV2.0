@@ -94,13 +94,17 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
    app.UseDeveloperExceptionPage();
+   app.UseSwagger();
+   app.UseSwaggerUI();
 }
-
-app.UseSwagger();
-app.UseSwaggerUI(c => {
-	c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1");
-	c.RoutePrefix = string.Empty;
-});
+else
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(c => {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1");
+        c.RoutePrefix = string.Empty;
+    });
+}
 
 app.UseHttpsRedirection();
 app.UseCors(_customPolicy);
