@@ -57,11 +57,11 @@ namespace API.Controllers
 
 				var user = await _userManager.FindByNameAsync(userLogin.username);
 
-				if (user is null) return NotFound();
+				if (user is null) return NotFound("Error: El nombre de usuario no es valido");
 
 				var result = await _userManager.CheckPasswordAsync(user, userLogin.password);
 
-				if (!result) return BadRequest("Bad credentials");
+				if (!result) return BadRequest("Error: la contraseña no es valida");
 
 				var response = _jwtService.CreateToken(user);
 
@@ -73,6 +73,32 @@ namespace API.Controllers
 			}
 		}
 
+		[HttpPost]
+		[Authorize]
+		[Route("change-password")]
+		public async Task<IActionResult> ChangePassword([FromBody] UserChangePasswordDTO userChangePassword)
+		{
+			try
+			{
+				if (!ModelState.IsValid) return BadRequest(ModelState);
+
+				var user = await _userManager.FindByNameAsync(userChangePassword.username);
+
+				if (user is null) return NotFound("Error: El nombre de usuario no es valido");
+
+				var resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+				var result = await _userManager.ResetPasswordAsync(user, resetToken, userChangePassword.newPassword);
+
+				if (!result.Succeeded) BadRequest(result);
+
+				return Ok(result.Succeeded);
+			}
+			catch (Exception)
+			{
+				throw;
+			}
+		}
 
 	}
 }
