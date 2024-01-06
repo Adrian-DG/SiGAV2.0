@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace API.Controllers
 {
@@ -24,53 +25,44 @@ namespace API.Controllers
 		[HttpPost]
 		[AllowAnonymous]
 		[Route("regiter-user")]
+		// [ProducesResponseType(StatusCodes.Status201Created)]
+		// [ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public async Task<IActionResult> RegisterUser([FromBody] UserRegisterDTO userRegister)
 		{
-			try
-			{
-				if (!ModelState.IsValid) return BadRequest(ModelState);
+			if (!ModelState.IsValid) return BadRequest(ModelState);
 
-				var user = new IdentityUser();
+			var user = new IdentityUser();
 
-				user.UserName = userRegister.username;
+			user.UserName = userRegister.username;
 
-				var result = await _userManager.CreateAsync(user, userRegister.password);
+			var result = await _userManager.CreateAsync(user, userRegister.password);
 
-				if (!result.Succeeded) return BadRequest(result.Errors);
+			if (!result.Succeeded) return BadRequest(result.Errors);
 
-				return Created("RegisterUser", result.Succeeded);
-			}
-			catch (Exception)
-			{
-				throw;
-			}
+			return Created("RegisterUser", result.Succeeded);
 		}
 
 		[HttpPost]
 		[AllowAnonymous]
 		[Route("validate-user")]
+		// [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(AuthenticatedResponse))]
+		// [ProducesResponseType(StatusCodes.Status404NotFound)]
+		// [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ModelStateDictionary))]
 		public async Task<IActionResult> LoginUser([FromBody] UserLoginDTO userLogin)
 		{
-			try
-			{
-				if (!ModelState.IsValid) return BadRequest(ModelState);
+			if (!ModelState.IsValid) return BadRequest(ModelState);
 
-				var user = await _userManager.FindByNameAsync(userLogin.username);
+			var user = await _userManager.FindByNameAsync(userLogin.username);
 
-				if (user is null) return NotFound("Error: El nombre de usuario no es valido");
+			if (user is null) return NotFound("Error: El nombre de usuario no es valido");
 
-				var result = await _userManager.CheckPasswordAsync(user, userLogin.password);
+			var result = await _userManager.CheckPasswordAsync(user, userLogin.password);
 
-				if (!result) return BadRequest("Error: la contraseña no es valida");
+			if (!result) return BadRequest("Error: la contraseña no es valida");
 
-				var response = _jwtService.CreateToken(user);
+			var response = _jwtService.CreateToken(user);
 
-				return Ok(response);
-			}
-			catch (Exception)
-			{
-				throw;
-			}
+			return Ok(response);
 		}
 
 		[HttpPost]
@@ -78,26 +70,19 @@ namespace API.Controllers
 		[Route("change-password")]
 		public async Task<IActionResult> ChangePassword([FromBody] UserChangePasswordDTO userChangePassword)
 		{
-			try
-			{
-				if (!ModelState.IsValid) return BadRequest(ModelState);
+			if (!ModelState.IsValid) return BadRequest(ModelState);
 
-				var user = await _userManager.FindByNameAsync(userChangePassword.username);
+			var user = await _userManager.FindByNameAsync(userChangePassword.username);
 
-				if (user is null) return NotFound("Error: El nombre de usuario no es valido");
+			if (user is null) return NotFound("Error: El nombre de usuario no es valido");
 
-				var resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+			var resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
 
-				var result = await _userManager.ResetPasswordAsync(user, resetToken, userChangePassword.newPassword);
+			var result = await _userManager.ResetPasswordAsync(user, resetToken, userChangePassword.newPassword);
 
-				if (!result.Succeeded) BadRequest(result);
+			if (!result.Succeeded) BadRequest(result);
 
-				return Ok(result.Succeeded);
-			}
-			catch (Exception)
-			{
-				throw;
-			}
+			return Ok(result.Succeeded);
 		}
 
 	}
