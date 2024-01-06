@@ -1,5 +1,6 @@
 ﻿using API.Services;
 using Domain.DTO.Usuario;
+using Domain.Entities.Usuario;
 using Domain.Models.Aurthenticated;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -24,16 +25,18 @@ namespace API.Controllers
 
 		[HttpPost]
 		[AllowAnonymous]
-		[Route("regiter-user")]
+		[Route("register-user")]
 		// [ProducesResponseType(StatusCodes.Status201Created)]
 		// [ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public async Task<IActionResult> RegisterUser([FromBody] UserRegisterDTO userRegister)
 		{
 			if (!ModelState.IsValid) return BadRequest(ModelState);
 
-			var user = new IdentityUser();
+			var user = new Usuario();
 
 			user.UserName = userRegister.username;
+			user.DepartamentoId = userRegister.departmentoId;
+			user.IsActive = true;
 
 			var result = await _userManager.CreateAsync(user, userRegister.password);
 

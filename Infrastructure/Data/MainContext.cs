@@ -13,6 +13,7 @@ using Domain.Entities.Asistencia;
 using Domain.Entities.Departamento;
 using Domain.Entities.Miembro;
 using Domain.Entities.Unidad;
+using Domain.Entities.Usuario;
 using Domain.Entities.Vehiculo;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -22,7 +23,7 @@ using Newtonsoft.Json;
 
 namespace Infrastructure.Data
 {
-    public class MainContext : IdentityDbContext<IdentityUser>
+    public class MainContext : IdentityDbContext<Usuario>
     {
         #region Entities
 

@@ -26,7 +26,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery] PaginationFilter filter)
+        public async Task<IActionResult> Get([FromQuery] PaginationFilter filter)
         {
             var result = await _uow.Repository<T>().GetAllAsync(filter, _expression);
             return new JsonResult(result);

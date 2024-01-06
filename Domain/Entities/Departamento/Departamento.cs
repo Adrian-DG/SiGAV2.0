@@ -10,6 +10,6 @@ namespace Domain.Entities.Departamento
     [Table(name: "Departamentos", Schema = "misc")]
     public class Departamento : NamedEntityMetadata
     {
-        
+        public bool NoReporta { get; set; }
     }
 }

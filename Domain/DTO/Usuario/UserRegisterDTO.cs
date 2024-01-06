@@ -5,6 +5,6 @@ using System.Threading.Tasks;
 
 namespace Domain.DTO.Usuario
 {
-    public record UserRegisterDTO(string username, string password);
+    public record UserRegisterDTO(string username, string password, int departmentoId);
     
 }

@@ -8,11 +8,7 @@ namespace Domain.Entities.Unidad
 {
     [Table(name: "Denominaciones", Schema = "Unidad")]
     public class Denominacion : NamedEntityMetadata
-    {
-        [ForeignKey("TipoUnidad")]
-        public int TipoUnidadId { get; set; }
-        public virtual TipoUnidad? TipoUnidad { get; set; }  
-        
+    {        
         [ForeignKey("Tramo")]
         public int TramoId { get; set; }
         public virtual Tramo? Tramo { get; set; }

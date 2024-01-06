@@ -14,7 +14,11 @@ namespace Domain.Entities.Unidad
 
         [ForeignKey("Denominacion")]
         public int DenominacionId { get; set; }
-        public virtual Denominacion? Denominacion { get; set; }             
+        public virtual Denominacion? Denominacion { get; set; }        
+
+        [ForeignKey("TipoUnidad")]
+        public int TipoUnidadId { get; set; }
+        public virtual TipoUnidad? TipoUnidad { get; set; }       
 
     }
 }
