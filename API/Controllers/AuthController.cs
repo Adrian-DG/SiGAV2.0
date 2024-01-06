@@ -23,7 +23,7 @@ namespace API.Controllers
 		}
 
 		[HttpPost]
-		[Authorize]
+		[AllowAnonymous]
 		[Route("regiter-user")]
 		// [ProducesResponseType(StatusCodes.Status201Created)]
 		// [ProducesResponseType(StatusCodes.Status400BadRequest)]
