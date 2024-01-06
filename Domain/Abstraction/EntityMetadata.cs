@@ -14,7 +14,7 @@ namespace Domain.Abstraction
         public int Id { get; set; }
 
         [DataType(DataType.DateTime)]
-        public DateTime FechaCreacion { get; set; }
+        public DateTime FechaCreacion { get; set; } = DateTime.Now;
 
         [DataType(DataType.DateTime)]
         public DateTime FechaModificacion { get; set; }

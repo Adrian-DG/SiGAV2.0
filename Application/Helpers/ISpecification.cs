@@ -10,5 +10,6 @@ namespace Application.Helpers
     public interface ISpecification<T> where T : EntityMetadata
     {
         Expression<Func<T, bool>> GetPredicate(Expression<Func<T, bool>> expression);
+        Expression<Func<T, dynamic>> GetOrderBy(Expression<Func<T, dynamic>> selector);
     }
 }

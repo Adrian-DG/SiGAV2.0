@@ -10,7 +10,7 @@ namespace Domain.Entities.Vehiculo
     public class VehiculoPlaca : EntityMetadata
     {
         public string? Sigla { get; set; }
+        public string? Descripcion { get; set; }
         public TipoPlaca TipoPlaca { get; set; }
-        public IList<VehiculoTipo>? TipoVehiculo { get; set; }
     }
 }

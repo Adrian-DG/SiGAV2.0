@@ -10,6 +10,7 @@ namespace Infrastructure.Helpers
 {
     public class Specification<T> : ISpecification<T> where T : EntityMetadata
     {
+        public Expression<Func<T, dynamic>> GetOrderBy(Expression<Func<T, dynamic>> selector) => selector;
         public Expression<Func<T, bool>> GetPredicate(Expression<Func<T, bool>> expression) => expression;
     }
 }

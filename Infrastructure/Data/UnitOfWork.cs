@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Application.Contracts;
 using Domain.Abstraction;
 using Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data
 {
@@ -16,7 +17,9 @@ namespace Infrastructure.Data
             _context = context;
         }
 
-        public async Task CommitChangesAsync() => await _context.SaveChangesAsync(); 
+        public async Task CommitChangesAsync() => await _context.SaveChangesAsync();
+        
+        public DbContext GetDbContext() => _context;
 
         public IGenericRepository<T> Repository<T>() where T : EntityMetadata
         {

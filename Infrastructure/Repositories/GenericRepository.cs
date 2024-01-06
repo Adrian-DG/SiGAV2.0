@@ -7,6 +7,7 @@ using Domain.Abstraction;
 using Domain.DTO.Pagination;
 using Domain.Models.Pagination;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace Infrastructure.Repositories
 {
@@ -27,12 +28,14 @@ namespace Infrastructure.Repositories
             _context.Entry<T>(Entity).State = EntityState.Modified;
         }
 
-        public async Task<PagedData<T>> GetAllAsync(PaginationFilter Filter, System.Linq.Expressions.Expression<Func<T, bool>> Predicate)
+        public async Task<PagedData<T>> GetAllAsync(PaginationFilter Filter, Expression<Func<T, bool>> Predicate, Expression<Func<T, dynamic>> OrderBy)
         {
             var result = await _repo
                         .Where(Predicate)
                         .Skip<T>((Filter.Page - 1) * Filter.Size)
                         .Take<T>(Filter.Size)
+                        .OrderBy(OrderBy)
+                        .ThenBy(o => o.FechaCreacion)
                         .ToListAsync<T>();
 
             int total = await GetTotalRecords(Predicate);

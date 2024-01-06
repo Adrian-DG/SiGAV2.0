@@ -37,6 +37,7 @@ namespace Domain.Entities.Asistencia
 		[ForeignKey("VehiculoModelo")]
 		public int VehiculoModeloId { get; set; }
 		public virtual VehiculoModelo? VehiculoModelo { get; set; }
+        public TipoPlaca TipoPlaca { get; set; }
         public string? Placa { get; set; }
 
         // Ubicacion

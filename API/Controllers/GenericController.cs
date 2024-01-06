@@ -14,21 +14,25 @@ namespace API.Controllers
 {
     [Authorize]
     public class GenericController<T> : BaseController where T : EntityMetadata
-    {
-        protected readonly IUnitOfWork _uow;
+    {        
         protected readonly ISpecification<T> _spec;
-        protected readonly Expression<Func<T, bool>> _expression;
-        public GenericController(IUnitOfWork unitOfWork, ISpecification<T> specification)
+        protected Expression<Func<T, bool>> _expression;
+        protected Expression<Func<T, dynamic>> _orderBy;
+        protected bool _status;
+        protected string _searchTerm;
+        public GenericController(IUnitOfWork unitOfWork, ISpecification<T> specification) : base(unitOfWork)
         {
-            _uow = unitOfWork;
             _spec = specification;
-            _expression = _spec.GetPredicate(x => x.Estatus);
+            _expression = _spec.GetPredicate(x => x.Estatus == _status);
+            _orderBy =_spec.GetOrderBy(x => x.Id);
         }
 
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] PaginationFilter filter)
         {
-            var result = await _uow.Repository<T>().GetAllAsync(filter, _expression);
+            _searchTerm = filter.SearchTerm;
+            _status = filter.Status;
+            var result = await _uow.Repository<T>().GetAllAsync(filter, _expression, _orderBy);
             return new JsonResult(result);
         }
 

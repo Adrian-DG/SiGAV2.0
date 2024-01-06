@@ -1,4 +1,6 @@
-﻿using API.Services;
+﻿using System.Security.Claims;
+using API.Services;
+using AutoMapper;
 using Domain.DTO.Usuario;
 using Domain.Entities.Usuario;
 using Domain.Models.Aurthenticated;
@@ -14,14 +16,19 @@ namespace API.Controllers
 	[ApiController]
 	public class AuthController : ControllerBase
 	{
-		private readonly IHttpContextAccessor _context;
+		private readonly IHttpContextAccessor _httpContext;
 		private readonly UserManager<IdentityUser> _userManager;
 		private readonly JwtService _jwtService;
-		public AuthController(UserManager<IdentityUser> userManager, JwtService jwtService)
+		private readonly IMapper _mapper;
+		public AuthController(UserManager<IdentityUser> userManager, JwtService jwtService, IHttpContextAccessor httpContextAccessor, IMapper mapper)
 		{
 			_userManager = userManager;
 			_jwtService = jwtService;
+			_mapper = mapper;
+			_httpContext = httpContextAccessor;
 		}
+
+		public async Task<string> GetCurrentUser() => (await _userManager.GetUserAsync(_httpContext?.HttpContext?.User)).Id;
 
 		[HttpPost]
 		[AllowAnonymous]
@@ -32,13 +39,9 @@ namespace API.Controllers
 		{
 			if (!ModelState.IsValid) return BadRequest(ModelState);
 
-			var user = new Usuario();
+			var newUser = _mapper.Map<Usuario>(userRegister);
 
-			user.UserName = userRegister.username;
-			user.DepartamentoId = userRegister.departmentoId;
-			user.IsActive = true;
-
-			var result = await _userManager.CreateAsync(user, userRegister.password);
+			var result = await _userManager.CreateAsync(newUser, userRegister.password);
 
 			if (!result.Succeeded) return BadRequest(result.Errors);
 
