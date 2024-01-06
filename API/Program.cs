@@ -1,5 +1,6 @@
 using System.Text;
 using API.Constants;
+using API.Middlewares;
 using API.Services;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -105,6 +106,8 @@ else
         c.RoutePrefix = string.Empty;
     });
 }
+
+app.UseMiddleware<ExceptionHandlerMiddleware>();
 
 app.UseHttpsRedirection();
 app.UseCors(_customPolicy);
