@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Domain.Entities.Miembro
 {
     [Table(name: "Miembros", Schema = "Miembro")]
-    public class Miembro : EntityMetadata
+    public class Miembro : AuditableEntity
     {
         public string? Cedula { get; set; }
         public string? Nombre { get; set; }
@@ -26,7 +26,10 @@ namespace Domain.Entities.Miembro
         public NivelAccesoMiembro NivelAcceso { get; set; }
         public bool Autorizado { get; set; } = false;
         public virtual ICollection<HistoricoMiembro>? Historicos { get; set; }
-        public string InformacionMiembro() => $"{ (Institucion == Institucion.ARD ? Rango?.NombreArmada : Rango?.Name)  }, {Nombre} {Apellido}";
+
+        // Methods 
+
+        public string InformacionMiembro() => $"{ (Institucion == Institucion.ARD ? Rango?.NombreArmada : Rango?.Nombre)  }, {Nombre} {Apellido}";
         public string ObtenerNivelDeAcceso() => NivelAcceso.ToString().Replace("_", " ");
     }
 }

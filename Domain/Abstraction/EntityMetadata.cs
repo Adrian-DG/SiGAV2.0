@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Domain.Abstraction
@@ -22,6 +23,11 @@ namespace Domain.Abstraction
         public bool IsDeleted { get; set; } = false;
 
         public void ChangeVisibility() => IsDeleted = !IsDeleted;
+
+        public override string ToString()
+        {
+            return JsonSerializer.Serialize(this, new JsonSerializerOptions { WriteIndented = true });
+        }
 
     }
 }

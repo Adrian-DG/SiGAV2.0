@@ -6,11 +6,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Domain.Entities.Unidad;
 
-
 namespace Domain.Entities.Asistencia
 {
     [Table(name: "Asistencias", Schema = "Asistencia")]
-    public class Asistencia : EntityMetadata
+    public class Asistencia : AuditableEntity
     {
         // Ciudadano
         public string? Identificacion { get; set; }
@@ -88,7 +87,6 @@ namespace Domain.Entities.Asistencia
         [DataType(DataType.MultilineText)]
         public string? Comentario { get; set; }        
         public ReportadoPor QuienReporto { get; set; }
-        public bool FueReasignada { get; set; } = false;
-
+        public bool FueReasignada { get; set; } = false;        
     }
 }
