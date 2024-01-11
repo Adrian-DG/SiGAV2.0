@@ -10,6 +10,6 @@ namespace Domain.Entities
     [Table(name: "VehiculoTipos", Schema = "Vehiculo")]
     public class VehiculoTipo : NamedEntityMetadata
     {
-        public ICollection<VehiculoPlaca>? VehiculoPlacas { get; set; }
+        
     }
 }

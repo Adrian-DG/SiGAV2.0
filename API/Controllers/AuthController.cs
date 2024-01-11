@@ -17,10 +17,10 @@ namespace API.Controllers
 	public class AuthController : ControllerBase
 	{
 		private readonly IHttpContextAccessor _httpContext;
-		private readonly UserManager<IdentityUser> _userManager;
+		private readonly UserManager<Usuario> _userManager;
 		private readonly JwtService _jwtService;
 		private readonly IMapper _mapper;
-		public AuthController(UserManager<IdentityUser> userManager, JwtService jwtService, IHttpContextAccessor httpContextAccessor, IMapper mapper)
+		public AuthController(UserManager<Usuario> userManager, JwtService jwtService, IHttpContextAccessor httpContextAccessor, IMapper mapper)
 		{
 			_userManager = userManager;
 			_jwtService = jwtService;
@@ -28,7 +28,7 @@ namespace API.Controllers
 			_httpContext = httpContextAccessor;
 		}
 
-		public async Task<string> GetCurrentUser() => (await _userManager.GetUserAsync(_httpContext?.HttpContext?.User)).Id;
+		public async Task<int> GetCurrentUser() => (await _userManager.GetUserAsync(_httpContext?.HttpContext?.User)).Id;
 
 		[HttpPost]
 		[AllowAnonymous]

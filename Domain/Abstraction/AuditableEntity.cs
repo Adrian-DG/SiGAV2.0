@@ -10,11 +10,11 @@ namespace Domain.Abstraction
     public abstract class AuditableEntity : EntityMetadata
     {
         [ForeignKey("Creador")]
-        public Guid CreadorId { get; set; }
-        public Usuario? Creador { get; set; }
+        public string? CreadorId { get; set; }
+        public virtual Usuario? Creador { get; set; }
 
         [ForeignKey("Editor")]
-        public Guid EditorId { get; set; }
-        public Usuario? Editor { get; set; }
+        public string? EditorId { get; set; }
+        public virtual Usuario? Editor { get; set; }
     }
 }

@@ -23,7 +23,7 @@ using Newtonsoft.Json;
 
 namespace Infrastructure.Data
 {
-    public class MainContext : IdentityDbContext<Usuario>
+    public class MainContext : IdentityDbContext<Usuario, IdentityRole<int>, int>
     {
         #region Entities
 
@@ -113,12 +113,12 @@ namespace Infrastructure.Data
                     v => JsonConvert.DeserializeObject<IList<string>>(v, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore })
                 );
 
-            modelBuilder.Entity<VehiculoPlaca>()
-                .Property(prop => prop.TipoVehiculo)
-                .HasConversion(
-                    v => JsonConvert.SerializeObject(v, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }),
-                    v => JsonConvert.DeserializeObject<IList<VehiculoTipo>>(v, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore })
-                );
+            // modelBuilder.Entity<VehiculoPlaca>()
+            //     .Property(prop => prop.TipoVehiculo)
+            //     .HasConversion(
+            //         v => JsonConvert.SerializeObject(v, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }),
+            //         v => JsonConvert.DeserializeObject<IList<VehiculoTipo>>(v, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore })
+            //     );
 
             modelBuilder.Entity<Miembro>().HasIndex(i => i.Cedula).IsUnique();
 

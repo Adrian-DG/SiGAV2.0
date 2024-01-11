@@ -2,6 +2,7 @@ using System.Text;
 using API.Constants;
 using API.Middlewares;
 using API.Services;
+using Domain.Entities.Usuario;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -63,7 +64,7 @@ builder.Services.GetApplicationServices(builder.Configuration, builder.Environme
 
 // identity requirements
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(opt => {
+builder.Services.AddIdentity<Usuario, IdentityRole>(opt => {
    opt.SignIn.RequireConfirmedAccount = false;
    opt.Password.RequireNonAlphanumeric = false;
    opt.Password.RequireUppercase = false;

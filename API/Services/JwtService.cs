@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using API.Constants;
+using Domain.Entities.Usuario;
 using Domain.Models.Aurthenticated;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
@@ -22,7 +23,7 @@ namespace API.Services
             _configuration = configuration;
         }
 
-        public AuthenticatedResponse CreateToken(IdentityUser user)
+        public AuthenticatedResponse CreateToken(Usuario user)
         {
             var expiration = DateTime.Now.AddMinutes(EXPIRATION_MINUTES);
 
@@ -48,14 +49,14 @@ namespace API.Services
             );
         }
 
-        private Claim[] CreateClaims(IdentityUser user) 
+        private Claim[] CreateClaims(Usuario user) 
         {
             return new Claim[] 
             {
                 new Claim(JwtRegisteredClaimNames.Sub, _configuration[JwtBearerConstants.Jwt_Subject]),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
-                new Claim(ClaimTypes.NameIdentifier, user.Id),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.UserName),
                 //new Claim(ClaimTypes.Email, user.Email),
             };

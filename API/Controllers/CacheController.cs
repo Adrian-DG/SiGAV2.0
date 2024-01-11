@@ -91,18 +91,7 @@ namespace API.Controllers
         }
 
         [HttpGet("placas")]
-        public async Task<JsonResult> GetTipoPlaca()
-        {
-            var tipoPlacas = await _context.VehiculoPlacas
-                             .Select(x => new 
-                             {
-                                Id = x.Id,
-                                Nombre = $"{x.Descripcion} - ({x.Sigla})",
-                                Tipo = x.TipoPlaca.ToString()
-                             }).ToListAsync();
-            
-            return new JsonResult(tipoPlacas);
-        }
+        public async Task<JsonResult> GetTipoPlaca() => MaptoMiscelaneo(await _context.VehiculoPlacas.ToListAsync());
 
     }
 }

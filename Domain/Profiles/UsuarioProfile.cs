@@ -18,6 +18,14 @@ namespace Domain.Profiles
                     opt => opt.MapFrom(src => src.username)
                 )
                 .ForMember(
+                    dest => dest.Nombre,
+                    opt => opt.MapFrom(src => src.nombre)
+                )
+                .ForMember(
+                    dest => dest.Apellido,
+                    opt => opt.MapFrom(src => src.apellido)
+                )
+                .ForMember(
                     dest => dest.IsActive,
                     opt => opt.MapFrom(src => true)
                 )
