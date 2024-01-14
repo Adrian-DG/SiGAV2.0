@@ -35,6 +35,9 @@ namespace API.Migrations
                     b.Property<string>("Coordenadas")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("CreadorId")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("DenominacionId")
                         .HasColumnType("INTEGER");
 
@@ -43,6 +46,9 @@ namespace API.Migrations
 
                     b.Property<int>("Edad")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("EditorId")
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("EsExtranjero")
                         .HasColumnType("INTEGER");
@@ -101,6 +107,9 @@ namespace API.Migrations
                     b.Property<string>("TipoAsistencias")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("TipoPlaca")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("TipoUnidadId")
                         .HasColumnType("INTEGER");
 
@@ -124,7 +133,11 @@ namespace API.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CreadorId");
+
                     b.HasIndex("DenominacionId");
+
+                    b.HasIndex("EditorId");
 
                     b.HasIndex("MiembroId");
 
@@ -208,7 +221,7 @@ namespace API.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Nombre")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -234,11 +247,11 @@ namespace API.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
                     b.Property<bool>("NoReporta")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -301,8 +314,14 @@ namespace API.Migrations
                     b.Property<string>("Cedula")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("CreadorId")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("DepartamentoId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("EditorId")
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("Estatus")
                         .HasColumnType("INTEGER");
@@ -336,7 +355,11 @@ namespace API.Migrations
                     b.HasIndex("Cedula")
                         .IsUnique();
 
+                    b.HasIndex("CreadorId");
+
                     b.HasIndex("DepartamentoId");
+
+                    b.HasIndex("EditorId");
 
                     b.HasIndex("RangoId");
 
@@ -361,7 +384,7 @@ namespace API.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Nombre")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("ProvinciaId")
@@ -392,7 +415,7 @@ namespace API.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Nombre")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("RegionMacro")
@@ -421,7 +444,7 @@ namespace API.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Nombre")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NombreArmada")
@@ -450,7 +473,7 @@ namespace API.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Nombre")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("RegionMacro")
@@ -479,7 +502,7 @@ namespace API.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Nombre")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -505,7 +528,7 @@ namespace API.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Nombre")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("RegionAsistenciaId")
@@ -536,7 +559,7 @@ namespace API.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Nombre")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("TramoId")
@@ -728,9 +751,6 @@ namespace API.Migrations
                     b.Property<int>("TipoPlaca")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("TipoVehiculo")
-                        .HasColumnType("TEXT");
-
                     b.HasKey("Id");
 
                     b.ToTable("VehiculoPlacas", "Vehiculo");
@@ -754,7 +774,7 @@ namespace API.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Nombre")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -780,7 +800,7 @@ namespace API.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Nombre")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -806,7 +826,7 @@ namespace API.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Nombre")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("VehiculoMarcaId")
@@ -842,7 +862,7 @@ namespace API.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Nombre")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -980,11 +1000,19 @@ namespace API.Migrations
 
             modelBuilder.Entity("Domain.Entities.Asistencia.Asistencia", b =>
                 {
+                    b.HasOne("Domain.Entities.Usuario.Usuario", "Creador")
+                        .WithMany()
+                        .HasForeignKey("CreadorId");
+
                     b.HasOne("Domain.Entities.Unidad.Denominacion", "Denominacion")
                         .WithMany()
                         .HasForeignKey("DenominacionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Domain.Entities.Usuario.Usuario", "Editor")
+                        .WithMany()
+                        .HasForeignKey("EditorId");
 
                     b.HasOne("Domain.Entities.Miembro.Miembro", "Miembro")
                         .WithMany()
@@ -1046,7 +1074,11 @@ namespace API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Creador");
+
                     b.Navigation("Denominacion");
+
+                    b.Navigation("Editor");
 
                     b.Navigation("Miembro");
 
@@ -1125,11 +1157,19 @@ namespace API.Migrations
 
             modelBuilder.Entity("Domain.Entities.Miembro.Miembro", b =>
                 {
+                    b.HasOne("Domain.Entities.Usuario.Usuario", "Creador")
+                        .WithMany()
+                        .HasForeignKey("CreadorId");
+
                     b.HasOne("Domain.Entities.Departamento.Departamento", "Departamento")
                         .WithMany()
                         .HasForeignKey("DepartamentoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Domain.Entities.Usuario.Usuario", "Editor")
+                        .WithMany()
+                        .HasForeignKey("EditorId");
 
                     b.HasOne("Domain.Entities.Rango", "Rango")
                         .WithMany()
@@ -1137,7 +1177,11 @@ namespace API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Creador");
+
                     b.Navigation("Departamento");
+
+                    b.Navigation("Editor");
 
                     b.Navigation("Rango");
                 });

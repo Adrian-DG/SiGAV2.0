@@ -28,7 +28,7 @@ namespace API.Controllers
 			_httpContext = httpContextAccessor;
 		}
 
-		public async Task<int> GetCurrentUser() => (await _userManager.GetUserAsync(_httpContext?.HttpContext?.User)).Id;
+		public async Task<string> GetCurrentUser() => (await _userManager.GetUserAsync(_httpContext?.HttpContext?.User)).Id;
 
 		[HttpPost]
 		[AllowAnonymous]

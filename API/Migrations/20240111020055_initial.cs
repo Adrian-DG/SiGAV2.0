@@ -45,42 +45,18 @@ namespace API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUsers",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "TEXT", nullable: false),
-                    UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
-                    PasswordHash = table.Column<string>(type: "TEXT", nullable: true),
-                    SecurityStamp = table.Column<string>(type: "TEXT", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "TEXT", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(type: "TEXT", nullable: true),
-                    LockoutEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Departamentos",
                 schema: "misc",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    NoReporta = table.Column<bool>(type: "INTEGER", nullable: false),
                     FechaCreacion = table.Column<DateTime>(type: "TEXT", nullable: false),
                     FechaModificacion = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Estatus = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: true)
+                    Nombre = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -99,7 +75,7 @@ namespace API.Migrations
                     FechaModificacion = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Estatus = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: true)
+                    Nombre = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -118,7 +94,7 @@ namespace API.Migrations
                     FechaModificacion = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Estatus = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: true)
+                    Nombre = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -137,7 +113,7 @@ namespace API.Migrations
                     FechaModificacion = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Estatus = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: true)
+                    Nombre = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -156,7 +132,7 @@ namespace API.Migrations
                     FechaModificacion = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Estatus = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: true)
+                    Nombre = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -174,7 +150,7 @@ namespace API.Migrations
                     FechaModificacion = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Estatus = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: true)
+                    Nombre = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -192,7 +168,7 @@ namespace API.Migrations
                     FechaModificacion = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Estatus = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: true)
+                    Nombre = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -210,7 +186,7 @@ namespace API.Migrations
                     FechaModificacion = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Estatus = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: true)
+                    Nombre = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -226,7 +202,6 @@ namespace API.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Sigla = table.Column<string>(type: "TEXT", nullable: true),
                     TipoPlaca = table.Column<int>(type: "INTEGER", nullable: false),
-                    TipoVehiculo = table.Column<string>(type: "TEXT", nullable: true),
                     FechaCreacion = table.Column<DateTime>(type: "TEXT", nullable: false),
                     FechaModificacion = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Estatus = table.Column<bool>(type: "INTEGER", nullable: false),
@@ -248,7 +223,7 @@ namespace API.Migrations
                     FechaModificacion = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Estatus = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: true)
+                    Nombre = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -272,6 +247,128 @@ namespace API.Migrations
                         name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUsers",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    Nombre = table.Column<string>(type: "TEXT", nullable: true),
+                    Apellido = table.Column<string>(type: "TEXT", nullable: true),
+                    DepartamentoId = table.Column<int>(type: "INTEGER", nullable: false),
+                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
+                    UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
+                    PasswordHash = table.Column<string>(type: "TEXT", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "TEXT", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "TEXT", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "TEXT", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUsers_Departamentos_DepartamentoId",
+                        column: x => x.DepartamentoId,
+                        principalSchema: "misc",
+                        principalTable: "Departamentos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Municipios",
+                schema: "Ubicacion",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ProvinciaId = table.Column<int>(type: "INTEGER", nullable: false),
+                    FechaCreacion = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    FechaModificacion = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Estatus = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Nombre = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Municipios", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Municipios_Provincias_ProvinciaId",
+                        column: x => x.ProvinciaId,
+                        principalSchema: "Ubicacion",
+                        principalTable: "Provincias",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tramos",
+                schema: "Ubicacion",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    RegionAsistenciaId = table.Column<int>(type: "INTEGER", nullable: false),
+                    FechaCreacion = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    FechaModificacion = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Estatus = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Nombre = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tramos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Tramos_RegionAsistencia_RegionAsistenciaId",
+                        column: x => x.RegionAsistenciaId,
+                        principalSchema: "Asistencias",
+                        principalTable: "RegionAsistencia",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "VehiculoModelos",
+                schema: "Vehiculo",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    VehiculoMarcaId = table.Column<int>(type: "INTEGER", nullable: false),
+                    VehiculoTipoId = table.Column<int>(type: "INTEGER", nullable: false),
+                    FechaCreacion = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    FechaModificacion = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Estatus = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Nombre = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_VehiculoModelos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_VehiculoModelos_VehiculoMarcas_VehiculoMarcaId",
+                        column: x => x.VehiculoMarcaId,
+                        principalSchema: "Vehiculo",
+                        principalTable: "VehiculoMarcas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_VehiculoModelos_VehiculoTipos_VehiculoTipoId",
+                        column: x => x.VehiculoTipoId,
+                        principalSchema: "Vehiculo",
+                        principalTable: "VehiculoTipos",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -362,32 +459,6 @@ namespace API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Municipios",
-                schema: "Ubicacion",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    ProvinciaId = table.Column<int>(type: "INTEGER", nullable: false),
-                    FechaCreacion = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    FechaModificacion = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Estatus = table.Column<bool>(type: "INTEGER", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Municipios", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Municipios_Provincias_ProvinciaId",
-                        column: x => x.ProvinciaId,
-                        principalSchema: "Ubicacion",
-                        principalTable: "Provincias",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Miembros",
                 schema: "Miembro",
                 columns: table => new
@@ -406,11 +477,23 @@ namespace API.Migrations
                     FechaCreacion = table.Column<DateTime>(type: "TEXT", nullable: false),
                     FechaModificacion = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Estatus = table.Column<bool>(type: "INTEGER", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
+                    CreadorId = table.Column<string>(type: "TEXT", nullable: true),
+                    EditorId = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Miembros", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Miembros_AspNetUsers_CreadorId",
+                        column: x => x.CreadorId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Miembros_AspNetUsers_EditorId",
+                        column: x => x.EditorId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Miembros_Departamentos_DepartamentoId",
                         column: x => x.DepartamentoId,
@@ -428,61 +511,27 @@ namespace API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tramos",
-                schema: "Ubicacion",
+                name: "Denominaciones",
+                schema: "Unidad",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    RegionAsistenciaId = table.Column<int>(type: "INTEGER", nullable: false),
+                    TramoId = table.Column<int>(type: "INTEGER", nullable: false),
                     FechaCreacion = table.Column<DateTime>(type: "TEXT", nullable: false),
                     FechaModificacion = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Estatus = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: true)
+                    Nombre = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tramos", x => x.Id);
+                    table.PrimaryKey("PK_Denominaciones", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Tramos_RegionAsistencia_RegionAsistenciaId",
-                        column: x => x.RegionAsistenciaId,
-                        principalSchema: "Asistencias",
-                        principalTable: "RegionAsistencia",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "VehiculoModelos",
-                schema: "Vehiculo",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    VehiculoMarcaId = table.Column<int>(type: "INTEGER", nullable: false),
-                    VehiculoTipoId = table.Column<int>(type: "INTEGER", nullable: false),
-                    FechaCreacion = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    FechaModificacion = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Estatus = table.Column<bool>(type: "INTEGER", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_VehiculoModelos", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_VehiculoModelos_VehiculoMarcas_VehiculoMarcaId",
-                        column: x => x.VehiculoMarcaId,
-                        principalSchema: "Vehiculo",
-                        principalTable: "VehiculoMarcas",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_VehiculoModelos_VehiculoTipos_VehiculoTipoId",
-                        column: x => x.VehiculoTipoId,
-                        principalSchema: "Vehiculo",
-                        principalTable: "VehiculoTipos",
+                        name: "FK_Denominaciones_Tramos_TramoId",
+                        column: x => x.TramoId,
+                        principalSchema: "Ubicacion",
+                        principalTable: "Tramos",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -530,40 +579,6 @@ namespace API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Denominaciones",
-                schema: "Unidad",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    TipoUnidadId = table.Column<int>(type: "INTEGER", nullable: false),
-                    TramoId = table.Column<int>(type: "INTEGER", nullable: false),
-                    FechaCreacion = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    FechaModificacion = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Estatus = table.Column<bool>(type: "INTEGER", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Denominaciones", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Denominaciones_TipoUnidades_TipoUnidadId",
-                        column: x => x.TipoUnidadId,
-                        principalSchema: "Unidad",
-                        principalTable: "TipoUnidades",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Denominaciones_Tramos_TramoId",
-                        column: x => x.TramoId,
-                        principalSchema: "Ubicacion",
-                        principalTable: "Tramos",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Unidades",
                 schema: "Unidad",
                 columns: table => new
@@ -572,6 +587,7 @@ namespace API.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Ficha = table.Column<string>(type: "TEXT", nullable: true),
                     DenominacionId = table.Column<int>(type: "INTEGER", nullable: false),
+                    TipoUnidadId = table.Column<int>(type: "INTEGER", nullable: false),
                     FechaCreacion = table.Column<DateTime>(type: "TEXT", nullable: false),
                     FechaModificacion = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Estatus = table.Column<bool>(type: "INTEGER", nullable: false),
@@ -585,6 +601,13 @@ namespace API.Migrations
                         column: x => x.DenominacionId,
                         principalSchema: "Unidad",
                         principalTable: "Denominaciones",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Unidades_TipoUnidades_TipoUnidadId",
+                        column: x => x.TipoUnidadId,
+                        principalSchema: "Unidad",
+                        principalTable: "TipoUnidades",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -606,6 +629,7 @@ namespace API.Migrations
                     VehiculoColorId = table.Column<int>(type: "INTEGER", nullable: false),
                     VehiculoMarcaId = table.Column<int>(type: "INTEGER", nullable: false),
                     VehiculoModeloId = table.Column<int>(type: "INTEGER", nullable: false),
+                    TipoPlaca = table.Column<int>(type: "INTEGER", nullable: false),
                     Placa = table.Column<string>(type: "TEXT", nullable: true),
                     ProvinciaId = table.Column<int>(type: "INTEGER", nullable: false),
                     MunicipioId = table.Column<int>(type: "INTEGER", nullable: false),
@@ -628,11 +652,23 @@ namespace API.Migrations
                     FechaCreacion = table.Column<DateTime>(type: "TEXT", nullable: false),
                     FechaModificacion = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Estatus = table.Column<bool>(type: "INTEGER", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
+                    CreadorId = table.Column<string>(type: "TEXT", nullable: true),
+                    EditorId = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Asistencias", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Asistencias_AspNetUsers_CreadorId",
+                        column: x => x.CreadorId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Asistencias_AspNetUsers_EditorId",
+                        column: x => x.EditorId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Asistencias_Denominaciones_DenominacionId",
                         column: x => x.DenominacionId,
@@ -795,10 +831,22 @@ namespace API.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Asistencias_CreadorId",
+                schema: "Asistencia",
+                table: "Asistencias",
+                column: "CreadorId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Asistencias_DenominacionId",
                 schema: "Asistencia",
                 table: "Asistencias",
                 column: "DenominacionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Asistencias_EditorId",
+                schema: "Asistencia",
+                table: "Asistencias",
+                column: "EditorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Asistencias_MiembroId",
@@ -892,16 +940,15 @@ namespace API.Migrations
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_DepartamentoId",
+                table: "AspNetUsers",
+                column: "DepartamentoId");
+
+            migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Denominaciones_TipoUnidadId",
-                schema: "Unidad",
-                table: "Denominaciones",
-                column: "TipoUnidadId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Denominaciones_TramoId",
@@ -971,10 +1018,22 @@ namespace API.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Miembros_CreadorId",
+                schema: "Miembro",
+                table: "Miembros",
+                column: "CreadorId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Miembros_DepartamentoId",
                 schema: "Miembro",
                 table: "Miembros",
                 column: "DepartamentoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Miembros_EditorId",
+                schema: "Miembro",
+                table: "Miembros",
+                column: "EditorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Miembros_RangoId",
@@ -1006,6 +1065,12 @@ namespace API.Migrations
                 table: "Unidades",
                 column: "Ficha",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Unidades_TipoUnidadId",
+                schema: "Unidad",
+                table: "Unidades",
+                column: "TipoUnidadId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_VehiculoModelos_VehiculoMarcaId",
@@ -1061,9 +1126,6 @@ namespace API.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
                 name: "Asistencias",
                 schema: "Asistencia");
 
@@ -1088,8 +1150,7 @@ namespace API.Migrations
                 schema: "Vehiculo");
 
             migrationBuilder.DropTable(
-                name: "Departamentos",
-                schema: "misc");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Rangos",
@@ -1104,6 +1165,10 @@ namespace API.Migrations
                 schema: "Unidad");
 
             migrationBuilder.DropTable(
+                name: "TipoUnidades",
+                schema: "Unidad");
+
+            migrationBuilder.DropTable(
                 name: "VehiculoMarcas",
                 schema: "Vehiculo");
 
@@ -1112,8 +1177,8 @@ namespace API.Migrations
                 schema: "Vehiculo");
 
             migrationBuilder.DropTable(
-                name: "TipoUnidades",
-                schema: "Unidad");
+                name: "Departamentos",
+                schema: "misc");
 
             migrationBuilder.DropTable(
                 name: "Tramos",

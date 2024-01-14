@@ -23,7 +23,7 @@ using Newtonsoft.Json;
 
 namespace Infrastructure.Data
 {
-    public class MainContext : IdentityDbContext<Usuario, IdentityRole<int>, int>
+    public class MainContext : IdentityDbContext<Usuario>
     {
         #region Entities
 
